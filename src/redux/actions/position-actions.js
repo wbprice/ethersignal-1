@@ -1,4 +1,4 @@
-const API_KEY = process.env.ETHERSCAN_API_KEY
+// const API_KEY = process.env.ETHERSCAN_API_KEY
 
 import querystring from 'querystring'
 import fetch from 'isomorphic-fetch'
@@ -12,7 +12,7 @@ import getSignalPerBlock from './utils/getSignalPerBlock'
 
 import etherSignalAbi from './abi/etherSignalAbi'
 import positionRegistryAbi from './abi/positionRegistryAbi'
-
+/* eslint-disable no-native-reassign */
 if (typeof web3 !== 'undefined' && typeof Web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider)
 }
@@ -23,6 +23,7 @@ else if (typeof Web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider('https://signal.ether.ai/proxy'))
   }
 }
+/* eslint-enable no-native-reassign */
 
 import {
   addTimedAlert

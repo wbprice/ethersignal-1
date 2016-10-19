@@ -21,7 +21,7 @@ var buildPath = path.join(__dirname, isInNodeModules ? '../../..' : '..', 'build
 module.exports = {
   bail: true,
   devtool: 'source-map',
-  entry: path.join(srcPath, 'index'),
+  entry: [path.join(srcPath, 'index')],
   output: {
     path: buildPath,
     filename: '[name].[chunkhash].js',
@@ -55,6 +55,14 @@ module.exports = {
       {
         test: /\.css$/,
         include: srcPath,
+        // Disable autoprefixer in css-loader itself:
+        // https://github.com/webpack/css-loader/issues/281
+        // We already have it thanks to postcss.
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!postcss')
+      },
+      {
+        test: /\.css$/,
+        include: [/node_modules/],
         // Disable autoprefixer in css-loader itself:
         // https://github.com/webpack/css-loader/issues/281
         // We already have it thanks to postcss.

@@ -1,5 +1,5 @@
 /* global Web3, web3 */
-
+/* eslint-disable no-native-reassign */
 if (typeof web3 !== 'undefined' && typeof Web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider)
 }
@@ -10,6 +10,7 @@ else if (typeof Web3 !== 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider('https://signal.ether.ai/proxy'))
   }
 }
+/* eslint-enable no-native-reassign */
 
 import moment from 'moment'
 

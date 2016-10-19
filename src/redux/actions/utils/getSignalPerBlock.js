@@ -16,7 +16,7 @@ module.exports = function getSignalPerBlock(input) {
 
   function backfillHistory(input) {
     const keys = Object.keys(input)
-    for (let blockNumber in input) {
+    for (const blockNumber in input) {
       const index = keys.indexOf(blockNumber)
       if (index >= 1) {
         keys.slice(index - 1, index).forEach(lastBlock => {
@@ -30,7 +30,7 @@ module.exports = function getSignalPerBlock(input) {
   function dedupeTransactions(input) {
     let output = []
     const grouped = _.groupBy(input, 'from')
-    for (let address in grouped) {
+    for (const address in grouped) {
       output = [
         ...output,
         ...grouped[address].slice(-1)
@@ -43,7 +43,7 @@ module.exports = function getSignalPerBlock(input) {
 
     let output = []
 
-    for (let address in input) {
+    for (const address in input) {
       input[address] = input[address].reduce((memo, current) => {
         if (current.vote === '1') memo.pro.push(current)
         if (current.vote === '0') memo.against.push(current)
